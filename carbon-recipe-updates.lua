@@ -1,4 +1,4 @@
-local util = require("data-util");
+local util = require("__bzcarbon__.data-util");
 
 -- TECHS
 util.add_prerequisite("steel-processing", "graphite-processing")
@@ -81,8 +81,8 @@ if util.me.use_fullerenes() then
 
   -- K2
   util.add_ingredient("kr-biter-virus", "fullerenes", 100)
-  util.add_ingredient("kr-creep-virus", "fullerenes", 100)
-  util.replace_some_ingredient("kr-biomass-growing", "petroleum-gas", 25, "fullerenes", 25)
+  -- util.add_ingredient("kr-creep-virus", "fullerenes", 100)
+  util.replace_some_ingredient("kr-biomass", "petroleum-gas", 25, "fullerenes", 25)
 
   -- SE
   util.add_ingredient("se-vitalic-reagent", "fullerenes", 4)
@@ -173,8 +173,8 @@ end
 if util.k2() then
   util.replace_some_ingredient("steel-plate", "iron-plate", 2, "graphite", 4)
   util.add_ingredient("tungsten-carbide", "graphite", 4)
-  util.replace_some_ingredient("kr-s-c-steel-beam", "iron-plate", 4, "graphite", 8)
-  util.replace_some_ingredient("kr-s-c-steel-gear-wheel", "iron-plate", 2, "graphite", 4)
+  util.replace_some_ingredient("kr-easy-steel-beam", "iron-plate", 4, "graphite", 8)
+  util.replace_some_ingredient("kr-easy-steel-gear-wheel", "iron-plate", 2, "graphite", 4)
 elseif mods.bzfoundry and util.me.foundry_enable() then
   util.replace_some_ingredient("steel-plate", "iron-plate", 1, "graphite", 1)
   util.replace_some_ingredient("tungsten-carbide", "tungsten-plate", 1, "graphite", 1)
