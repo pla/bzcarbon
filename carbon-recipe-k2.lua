@@ -1,153 +1,153 @@
-local util = require("data-util");
+local util = require("__bzcarbon__.data-util");
 
 if util.k2() then
-
--- HCL graphite processing
-if util.me.use_flake_graphite() then
-local gsubgroup = "raw-material"
-if mods["space-exploration"] and string.sub(mods["space-exploration"], 1, 3) == "0.6" and
-data.raw["item-subgroup"]["carbon"] then
-  gsubgroup = "carbon"
-end
-data:extend({
-  {
-    type = "recipe",
-    name = "enriched-graphite",
-    main_product = "graphite",
-    icons = {
-          { icon = "__bzcarbon__/graphics/icons/graphite.png", icon_size = 128},
-          { icon = util.k2assets().."/icons/fluids/hydrogen-chloride.png", icon_size = 64, scale=0.25,  icon_mipmaps = 3, shift= {-8, -8}},
-        },
-    category = "chemistry",
-    subgroup = gsubgroup,
-    order = "g[graphite]",
-    enabled = false,
-    energy_required = 6,
-		crafting_machine_tint =
-		{
-			primary = {r = 0.2, g = 0.2, b = 0.2, a = 0.6},
-			secondary = {r = 0.2, g = 0.2, b = 0.2, a = 0.9},
-			tertiary = {r = 0.2, g = 0.2, b = 0.2, a = 0.9},
-			quaternary = {r = 0.2, g = 0.2, b = 0.2, a = 0.9},
-		},
-    ingredients = {
-      {type="item", name="flake-graphite", amount=10},
-      {type="fluid", name="water", amount=25, ignored_by_stats=25, ignored_by_productivity=25},
-      {type="fluid", name="kr-hydrogen-chloride", amount=25},
-    },
-    results = {
-      {type="item", name="graphite", amount=18},
-      {type="fluid", name="kr-dirty-water", amount=25, ignored_by_stats=25, ignored_by_productivity=25},
-    },
-  },
-	{
-		type = "recipe",
-		name = "dirty-water-filtration-graphite",
-		category = "kr-fluid-filtration",
-		icons =
-		{
-			{
-				icon = data.raw.fluid["kr-dirty-water"].icon,
-				icon_size = data.raw.fluid["kr-dirty-water"].icon_size
-			},
-			{
-				icon = data.raw.item["flake-graphite"].icon,
-				icon_size =	data.raw.item["flake-graphite"].icon_size,
-				scale = 0.20 * 64 / (data.raw.item["flake-graphite"].icon_size or 64),
-				shift = {0, 4}
-			}
-		},
-		energy_required = 2,
-		enabled = false,
-		allow_as_intermediate = false,
-		always_show_made_in = true,
-		always_show_products = true,
-		ingredients =
-		{
-			{type = "fluid", name = "kr-dirty-water", amount = 100, catalyst_amount = 100},
-		},
-		results =
-		{
-			{type = "fluid", name = "water", amount = 90, catalyst_amount = 90},
-			{type = "item",  name = "stone", probability = 0.30, amount = 1},
-			{type = "item",  name = "flake-graphite", probability = 0.05, amount = 1},
-		},
-		crafting_machine_tint =
-		{
-			primary = {r = 0.2, g = 0.2, b = 0.2, a = 0.6},
-			secondary = {r = 0.2, g = 0.2, b = 0.2, a = 0.9}
-		},
-		subgroup = "raw-material",
-		order = "w013[dirty-water-filtration-graphite]"
-	},
-  {
-      type = "technology",
-      name = "enriched-graphite",
-      icons =
+  -- HCL graphite processing
+  if util.me.use_flake_graphite() then
+    local gsubgroup = "raw-material"
+    if mods["space-exploration"] and string.sub(mods["space-exploration"], 1, 3) == "0.6" and
+        data.raw["item-subgroup"]["carbon"] then
+      gsubgroup = "carbon"
+    end
+    data:extend({
       {
-        {
-          icon = "__bzcarbon__/graphics/icons/graphite.png",
-          icon_size = 128,
+        type = "recipe",
+        name = "enriched-graphite",
+        main_product = "graphite",
+        icons = {
+          { icon = "__bzcarbon__/graphics/icons/graphite.png",             icon_size = 128 },
+          { icon = util.k2assets() .. "/icons/fluids/hydrogen-chloride.png", icon_size = 64, scale = 0.25, icon_mipmaps = 3, shift = { -8, -8 } },
         },
+        category = "chemistry",
+        subgroup = gsubgroup,
+        order = "g[graphite]",
+        enabled = false,
+        energy_required = 6,
+        crafting_machine_tint =
         {
-          icon = util.k2assets().."/icons/fluids/hydrogen-chloride.png",
-          icon_size = 64, icon_mipmaps = 3,
-          shift = {-32,-32},
+          primary = { r = 0.2, g = 0.2, b = 0.2, a = 0.6 },
+          secondary = { r = 0.2, g = 0.2, b = 0.2, a = 0.9 },
+          tertiary = { r = 0.2, g = 0.2, b = 0.2, a = 0.9 },
+          quaternary = { r = 0.2, g = 0.2, b = 0.2, a = 0.9 },
+        },
+        ingredients = {
+          { type = "item", name = "flake-graphite",    amount = 10 },
+          { type = "fluid", name = "water",            amount = 25, ignored_by_stats = 25, ignored_by_productivity = 25 },
+          { type = "fluid", name = "kr-hydrogen-chloride", amount = 25 },
+        },
+        results = {
+          { type = "item", name = "graphite",    amount = 18 },
+          { type = "fluid", name = "kr-dirty-water", amount = 25, ignored_by_stats = 25, ignored_by_productivity = 25 },
+        },
+      },
+      {
+        type = "recipe",
+        name = "dirty-water-filtration-graphite",
+        category = "kr-fluid-filtration",
+        icons =
+        {
+          {
+            icon = data.raw.fluid["kr-dirty-water"].icon,
+            icon_size = data.raw.fluid["kr-dirty-water"].icon_size
+          },
+          {
+            icon = data.raw.item["flake-graphite"].icon,
+            icon_size = data.raw.item["flake-graphite"].icon_size,
+            scale = 0.20 * 64 / (data.raw.item["flake-graphite"].icon_size or 64),
+            shift = { 0, 4 }
+          }
+        },
+        energy_required = 2,
+        enabled = false,
+        allow_as_intermediate = false,
+        always_show_made_in = true,
+        always_show_products = true,
+        ingredients =
+        {
+          { type = "fluid", name = "kr-dirty-water", amount = 100, catalyst_amount = 100 },
+        },
+        results =
+        {
+          { type = "fluid", name = "water",          amount = 90,        catalyst_amount = 90 },
+          { type = "item",  name = "stone",          probability = 0.30, amount = 1 },
+          { type = "item",  name = "flake-graphite", probability = 0.05, amount = 1 },
+        },
+        crafting_machine_tint =
+        {
+          primary = { r = 0.2, g = 0.2, b = 0.2, a = 0.6 },
+          secondary = { r = 0.2, g = 0.2, b = 0.2, a = 0.9 }
+        },
+        subgroup = "raw-material",
+        order = "w013[dirty-water-filtration-graphite]"
+      },
+      {
+        type = "technology",
+        name = "enriched-graphite",
+        icons =
+        {
+          {
+            icon = "__bzcarbon__/graphics/icons/graphite.png",
+            icon_size = 128,
+          },
+          {
+            icon = util.k2assets() .. "/icons/fluids/hydrogen-chloride.png",
+            icon_size = 64,
+            icon_mipmaps = 3,
+            shift = { -32, -32 },
+          }
+        },
+        effects =
+        {
+          {
+            type = "unlock-recipe",
+            recipe = "enriched-graphite"
+          },
+          {
+            type = "unlock-recipe",
+            recipe = "dirty-water-filtration-graphite",
+          }
+        },
+        prerequisites = { "kr-enriched-ores" },
+        unit =
+        {
+          count = 50,
+          ingredients =
+          {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
+          },
+          time = 30
         }
       },
-      effects =
-      {
-        {
-          type = "unlock-recipe",
-          recipe = "enriched-graphite"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "dirty-water-filtration-graphite",
-        }
+    })
+  end
+
+
+
+  -- heavy water
+  data:extend({
+    {
+      type = "recipe",
+      name = "heavy-water-graphene",
+      icons = {
+        { icon = util.k2assets() .. "/icons/fluids/heavy-water.png", icon_size = 64, icon_mipmaps = 3, },
+        { icon = "__bzcarbon__/graphics/icons/graphene.png",       icon_size = 128, scale = 0.25,     shift = { -8, -8 } },
       },
-      prerequisites = {"kr-enriched-ores"},
-      unit =
-      {
-        count = 50,
-        ingredients = 
-        {
-                  {"automation-science-pack", 1},
-                  {"logistic-science-pack", 1},
-                  {"chemical-science-pack", 1}
-        },
-        time = 30
-      }
-  },
-})
-end
-
-
-
--- heavy water
-data:extend({
-{
-    type = "recipe",
-    name = "heavy-water-graphene",
-    icons = {
-          { icon = util.k2assets().."/icons/fluids/heavy-water.png", icon_size = 64, icon_mipmaps = 3,},
-          { icon = "__bzcarbon__/graphics/icons/graphene.png", icon_size = 128,  scale=0.25, shift= {-8, -8}},
-        },
-    category = "kr-electrolysis",
-    subgroup = "fluid-recipes",
-    order = "y06[heavy-water]",
-    enabled = false,
-    energy_required = 60,
-    ingredients = {
-      {type="item", name="graphene", amount=1, ignored_by_stats=1, ignored_by_productivity=1},
-      {type="fluid", name="water", amount=500},
-    },
-    results = {
-      {type="item", name="graphene", amount=1, probability=.8, ignored_by_stats=1, ignored_by_productivity=1},
-      {type="fluid", name="kr-heavy-water", amount=40},
-    },
-  }
-})
-util.add_effect("graphene", {type="unlock-recipe", recipe="heavy-water-graphene"})
-util.add_prerequisite("fullerenes", "kr-atmosphere-condensation")
+      category = "kr-electrolysis",
+      subgroup = "fluid-recipes",
+      order = "y06[heavy-water]",
+      enabled = false,
+      energy_required = 60,
+      ingredients = {
+        { type = "item", name = "graphene", amount = 1, ignored_by_stats = 1, ignored_by_productivity = 1 },
+        { type = "fluid", name = "water", amount = 500 },
+      },
+      results = {
+        { type = "item", name = "graphene",    amount = 1, probability = .8, ignored_by_stats = 1, ignored_by_productivity = 1 },
+        { type = "fluid", name = "kr-heavy-water", amount = 40 },
+      },
+    }
+  })
+  util.add_effect("graphene", { type = "unlock-recipe", recipe = "heavy-water-graphene" })
+  util.add_prerequisite("fullerenes", "kr-atmosphere-condensation")
 end
