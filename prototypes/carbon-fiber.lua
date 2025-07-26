@@ -37,6 +37,7 @@ if util.me.use_fiber() then
     {
       type = "recipe",
       name = "polyacrylonitrile",
+      allow_productivity=true,
       category = "chemistry",
       order = "d[graphite-carbon-fiber]",
       enabled = false,
