@@ -83,7 +83,7 @@ if util.me.use_fiber() then
         name = "carbon-fiber",
         category = "advanced-crafting",
         order = "d[graphite-carbon-fiber]",
-        allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+        allow_productivity=true,
         enabled = false,
         energy_required = 24,
         ingredients = {
