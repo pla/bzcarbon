@@ -55,7 +55,8 @@ if util.me.use_fiber() then
     },
   })
   if mods.Krastorio2 then
-    util.add_ingredient("polyacrylonitrile", "kr-ammonia", 5)
+    -- util.add_ingredient("polyacrylonitrile", "kr-ammonia", 5)
+    util.replace_some_ingredient("polyacrylonitrile", "petroleum-gas", 5, "kr-ammonia", 5)
   end
   if mods["space-age"] then
     util.set_category("polyacrylonitrile", "organic")
