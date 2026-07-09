@@ -1,4 +1,4 @@
-local util = require("__bzcarbon__.data-util");
+local util = require("__bzcarbon__.data-util")
 local item_sounds = require('__base__.prototypes.item_sounds')
 
 local graphite_category = "crafting"
@@ -38,7 +38,7 @@ data:extend({
   {
     type = "recipe",
     name = "graphite",
-    category = graphite_category,
+    categories = {graphite_category},
     order = "d[graphite]",
     icons = (util.k2() and
         {
@@ -94,7 +94,7 @@ if not util.me.use_flake_graphite() then
         type = "recipe",
         name = "graphite",
         icon = "__bzcarbon__/graphics/icons/graphite.png", icon_size=128,
-        category = mods.bzfoundry and "founding" or "crafting",
+        categories = mods.bzfoundry and {"founding"} or {"crafting"},
         order = "d[graphite]",
         enabled = false,
         energy_required = 0.5,
@@ -108,13 +108,13 @@ if not util.me.use_flake_graphite() then
         type = "recipe",
         name = "graphite",
         icon = "__bzcarbon__/graphics/icons/graphite.png", icon_size=128,
-        category = mods.bzfoundry and "founding" or "crafting",
+        categories = mods.bzfoundry and {"founding"} or {"crafting"},
         subgroup = data.raw.item.graphite.subgroup,
         order = "d[graphite]",
         enabled = false,
         energy_required = 0.5,
         ingredients = {util.item("coal", 1)},
-        results = {util.item("graphite", 1), {type="item", name="stone", amount=1, probability=0.05}},
+        results = {util.item("graphite", 1), {type="item", name="stone", amount=1, independent_probability=0.05}},
       }
     })
   end
@@ -140,7 +140,7 @@ data:extend({
   {
     type = "recipe",
     name = "graphite-se",
-    category = "advanced-crafting",
+    categories = {"advanced-crafting"},
     order = "d[graphite]",
     enabled = false,
     energy_required = 0.5,
@@ -159,7 +159,7 @@ data:extend({
   {
     type = "recipe",
     name = "graphite-5d",
-    category = "mashering",
+    categories = {"mashering"},
     order = "d[graphite]",
     enabled = true,
     energy_required = 0.5,
@@ -187,7 +187,7 @@ data:extend({
   {
     type = "recipe",
     name = "synthetic-diamond",
-    category = "diamond-synthesis",
+    categories = {"diamond-synthesis"},
     order = "d[diamond]",
     icons = (util.me.use_rough_diamond() and
         {
@@ -199,18 +199,11 @@ data:extend({
     energy_required = 20,
     ingredients = {util.item("graphite", mods["space-age"] and 20 or 10)},
     results = {util.item("diamond")},
-    -- expensive =
-    -- {
-    --   enabled = false,
-    --   energy_required = 30,
-    --   ingredients = {util.item("graphite", 20)},
-    --   result = "diamond"
-    -- }
   },
   util.me.use_rough_diamond() and {
     type = "recipe",
     name = "diamond-processing",
-    category = "advanced-crafting",
+    categories = {"advanced-crafting"},
     subgroup = "raw-material",
     order = "d[diamond]",
     icons = (util.k2() and
@@ -218,31 +211,14 @@ data:extend({
           { icon = "__bzcarbon__/graphics/icons/diamond.png", icon_size = 128},
           { icon = "__bzcarbon__/graphics/icons/rough-diamond.png", icon_size = 64, scale=0.25, shift= {-8, -8}},
         } or  {{ icon = "__bzcarbon__/graphics/icons/diamond.png", icon_size = 128}}),
-    -- normal = (util.k2() and
-    --     {
-    --       enabled = false,
-    --       energy_required = 20,
-    --       ingredients = {util.item("rough-diamond", 1)},
-    --       results = {
-    --         {type="item", name= "diamond", amount=1, probability=0.8},
-    --         {type="item", name= "stone", amount=1, probability=0.2}
-    --       },
-    --    } or
     enabled = false,
     allow_productivity=true,
     energy_required = 20,
     ingredients = {util.item("rough-diamond", 1)},
     results = {
-      {type="item", name= "diamond", amount=1, probability=0.8},
-      {type="item", name= "stone", amount=1, probability=0.2}
+      {type="item", name= "diamond", amount=1, independent_probability=0.8},
+      {type="item", name= "stone", amount=1, independent_probability=0.2}
     },
-    -- expensive =
-    -- {
-    --   enabled = false,
-    --   energy_required = 40,
-    --   ingredients = {util.item("rough-diamond", 1)},
-    --   result = "diamond"
-    -- }
   } or nil,
 })
 data:extend({
@@ -296,7 +272,7 @@ data:extend({
   {
     type = "recipe",
     name = "graphene",
-    category = "chemistry",
+    categories = {"chemistry"},
     order = "d[graphite]",
     enabled = false,
     allow_productivity=true,
@@ -380,7 +356,7 @@ data:extend({
   {
     type = "recipe",
     name = "fullerenes",
-    category = mods["space-age"] and "electronics-or-assembling" or "advanced-crafting",
+    categories = mods["space-age"] and {"electronics-or-assembling"} or {"advanced-crafting"},
     order = "d[graphite-fullerenes]",
     enabled = false,
     allow_productivity=true,
@@ -440,7 +416,7 @@ data:extend({
     main_product = "nanotubes",
     icon = "__bzcarbon__/graphics/icons/nanotube.png",
     icon_size = 128,
-    category = "chemistry",
+    categories = {"chemistry"},
     subgroup = "intermediate-product",
     order = "d[graphite-nanotubes]",
     enabled = false,
@@ -453,7 +429,7 @@ data:extend({
     },
     results = {
       {type="item", name="nanotubes", amount=1},
-      {type="item", name="iron-plate", amount=1, probability=0.95, ignored_by_stats=1, ignored_by_productivity=1},
+      {type="item", name="iron-plate", amount=1, independent_probability=0.95, ignored_by_stats=1, ignored_by_productivity=1},
       {type="fluid", name="sulfuric-acid", amount=9, ignored_by_stats=9, ignored_by_productivity=9},
       util.k2() and {type="fluid", name="kr-dirty-water", amount=1, ignored_by_stats=1, ignored_by_productivity=1} or nil,
     },
@@ -519,7 +495,7 @@ data:extend({
     name = "carbon-black",
     icon = "__bzcarbon__/graphics/icons/carbon-black.png",
     icon_size = 64, icon_mipmaps = 3,
-    category = "chemistry",
+    categories = {"chemistry"},
     order = "d[graphite-carbon-black]",
     enabled = false,
     allow_productivity=true,
@@ -538,7 +514,7 @@ data:extend({
       { icon = "__bzcarbon__/graphics/icons/carbon-black.png", icon_size = 64, icon_mipmaps = 3},
       { icon = "__bzcarbon__/graphics/icons/graphite.png", icon_size = 128},
     },
-    category = "chemistry",
+    categories = {"chemistry"},
     order = "d[graphite]",
     enabled = false,
     allow_productivity=true,
@@ -568,7 +544,7 @@ data:extend({
 {
   type = "recipe",
   name = "crucible",
-  category = "crafting",
+  categories = {"crafting"},
   order = "d[graphite]",
   enabled = false,
   allow_productivity=true,
@@ -606,9 +582,9 @@ end
 
 -- Set early tech tree
 if util.me.use_flake_graphite() then
-  util.set_tech_trigger("graphite-processing", {type = "mine-entity", entity = "graphite"})
+  util.set_tech_trigger("graphite-processing", {type = "mine-entity", entities = {"graphite"}})
 else
-  util.set_tech_trigger("graphite-processing", {type = "mine-entity", entity = "coal"})
+  util.set_tech_trigger("graphite-processing", {type = "mine-entity", entities = {"coal"}})
 end
 util.add_prerequisite("graphite-processing", "steam-power")
 
@@ -627,7 +603,7 @@ if mods["space-age"] then
       {icon = "__bzcarbon__/graphics/icons/graphite.png", icon_size = 128},
       {icon = "__bzcarbon__/graphics/icons/rough-diamond.png", icon_size = 128, scale = 0.125, shift={-8,-8}},
     },
-    category = "smelting",
+    categories = {"smelting"},
     order = "d[graphite]",
     enabled = false,
     allow_productivity=true,
@@ -659,7 +635,7 @@ if mods["space-age"] then
     },
     research_trigger = {
       type = "mine-entity",
-      entity = "diamond",
+      entities = {"diamond"},
     },
     prerequisites = {"planet-discovery-vulcanus"},
     order = "b-b"
@@ -668,7 +644,7 @@ if mods["space-age"] then
   {
     type = "recipe",
     name = "graphite-synthesis",
-    category = "organic-or-chemistry",
+    categories = {"organic-or-chemistry"},
     order = "d[graphite]",
     enabled = false,
     allow_productivity=true,

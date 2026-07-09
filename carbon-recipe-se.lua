@@ -1,4 +1,4 @@
-local util = require("data-util");
+local util = require("data-util")
 if mods["space-exploration"] then
 
 if util.me.use_rough_diamond() then
@@ -30,7 +30,7 @@ data:extend({
     {
       type = "recipe",
       name = "diamond-synthesis-vulcanite",
-      category = "smelting",
+      categories = {"smelting"},
       order = "g[diamond]",
       energy_required = 40,
       enabled = false,

@@ -1,4 +1,4 @@
-local util = require("__bzcarbon__.data-util");
+local util = require("__bzcarbon__.data-util")
 
 if util.me.use_fiber() then
   if mods["space-age"] then
@@ -7,7 +7,7 @@ if util.me.use_fiber() then
       {
         type = "recipe",
         name = "ammonia-from-spoilage",
-        category = "organic",
+        categories = {"organic"},
         subgroup = "agriculture-processes",
         icons = {
           { icon = "__space-age__/graphics/icons/fluid/ammonia.png", icon_size = 64 },
@@ -37,18 +37,17 @@ if util.me.use_fiber() then
     {
       type = "recipe",
       name = "polyacrylonitrile",
-      allow_productivity=true,
-      category = "chemistry",
+      allow_productivity = true,
+      categories = { "chemistry" },
       order = "d[graphite-carbon-fiber]",
       enabled = false,
       energy_required = 1,
-      ingredients = data.raw.fluid["ammonia"] and
-          {
-            { type = "fluid", name = "petroleum-gas", amount = 5 },
-            { type = "fluid", name = "ammonia",   amount = 5 },
-          } or {
-            { type = "fluid", name = "petroleum-gas", amount = 10 },
-          },
+      ingredients = data.raw.fluid["ammonia"] and {
+        { type = "fluid", name = "petroleum-gas", amount = 5 },
+        { type = "fluid", name = "ammonia", amount = 5 },
+      } or {
+        { type = "fluid", name = "petroleum-gas", amount = 10 },
+      },
       results = {
         { type = "item", name = "polyacrylonitrile", amount = 1 },
       },
@@ -66,7 +65,7 @@ if util.me.use_fiber() then
     util.add_ingredient("polyacrylonitrile", "ammonia", 10)
     util.add_ingredient("carbon-fiber", "ammonia", 10)
     util.replace_ingredient("carbon-fiber", "carbon", "polyacrylonitrile")
-    util.set_item_icons("carbon-fiber", { { icon = "__bzcarbon__/graphics/icons/carbon-fiber.png", icon_size = 128, } })
+    util.set_item_icons("carbon-fiber", { { icon = "__bzcarbon__/graphics/icons/carbon-fiber.png", icon_size = 128 } })
     util.add_unlock("biochamber", "ammonia-from-spoilage")
     util.add_unlock("carbon-fiber", "polyacrylonitrile")
   else
@@ -83,7 +82,7 @@ if util.me.use_fiber() then
       {
         type = "recipe",
         name = "carbon-fiber",
-        category = "advanced-crafting",
+        categories = {"advanced-crafting"},
         order = "d[graphite-carbon-fiber]",
         allow_productivity=true,
         enabled = false,

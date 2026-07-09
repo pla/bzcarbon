@@ -1,6 +1,6 @@
-local resource_autoplace = require('resource-autoplace');
+local resource_autoplace = require('resource-autoplace')
 local item_sounds = require('__base__.prototypes.item_sounds')
-local util = require("data-util");
+local util = require("data-util")
 
 if util.me.use_flake_graphite() then
 
