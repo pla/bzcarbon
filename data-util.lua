@@ -120,7 +120,7 @@ function util.fe_plus(sub)
 end
 
 function util.get_stack_size(default)
-  if util.k2() and kr_adjust_stack_sizes then
+  if util.k2() and KR.adjust_stack_sizes then
     return tonumber(200)
   end
   return default
